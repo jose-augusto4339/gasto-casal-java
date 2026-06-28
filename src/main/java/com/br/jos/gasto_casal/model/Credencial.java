@@ -2,12 +2,11 @@ package com.br.jos.gasto_casal.model;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,32 +15,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Getter
 @Setter
 @Entity
-public class Usuario {
+public class Credencial {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Credencial credencial;
+	@OneToOne(optional = false)
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	private Usuario usuario;
 	
-	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private PerfilUsuario perfilUsuario;
+	private String senhaHash;
 	
-	private String nomeUsuario;
+	private String senhaAlgoritmo;
 	
-	private String email;
-	
-	private boolean isAtivo;
-	
-	private LocalDateTime criadoEm;
-	
-	private LocalDateTime alteradoEm;
-
+	private LocalDateTime senhaAlteradaEm;
 }

@@ -1,13 +1,14 @@
 package com.br.jos.gasto_casal.model;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,33 +16,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Getter
 @Setter
 @Entity
-public class Usuario {
-	
+public class PerfilUsuario {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Credencial credencial;
+	@OneToOne(optional = false)
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	private Usuario usuario;
 	
-	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private PerfilUsuario perfilUsuario;
+	@OneToMany(mappedBy = "perfilUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Endereco> endereco;
 	
-	private String nomeUsuario;
+	private String nomeCompleto;
 	
-	private String email;
-	
-	private boolean isAtivo;
-	
-	private LocalDateTime criadoEm;
-	
-	private LocalDateTime alteradoEm;
-
+	private String telefone;
 }

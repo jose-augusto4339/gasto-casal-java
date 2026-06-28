@@ -1,5 +1,8 @@
 package com.br.jos.gasto_casal.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,14 @@ public class GastoService {
 	
 	@Autowired
 	private GastoRepository gastoRepository;
+	
+	public List<GastoDTO> listaGastos(){
+		List<GastoDTO> gastosDTO = new ArrayList<>();
+		
+		
+		
+		return gastosDTO;
+	}
 
 	public GastoDTO salvaGasto(GastoDTO gastoDTO) {
 		Gasto gasto = new Gasto();

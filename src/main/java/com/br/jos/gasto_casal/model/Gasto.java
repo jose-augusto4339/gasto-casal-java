@@ -24,6 +24,8 @@ public class Gasto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private Conta conta;
+	
 	private String nome;
 	
 	private LocalDate data;
@@ -31,5 +33,5 @@ public class Gasto {
 	private Double valor;
 	
 	private String tipo;
-
+	
 }

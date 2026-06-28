@@ -24,6 +24,7 @@ public class GastoController {
 	@GetMapping
 	private ResponseEntity<List<GastoDTO>> listaGastos(@PathVariable Long contaId){
 		
+		return ResponseEntity.ok(null);
 	}
 	
 	@PostMapping("/salva")

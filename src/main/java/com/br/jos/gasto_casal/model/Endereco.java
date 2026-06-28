@@ -1,47 +1,41 @@
 package com.br.jos.gasto_casal.model;
 
-import java.time.LocalDateTime;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Getter
 @Setter
 @Entity
-public class Usuario {
+public class Endereco {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Credencial credencial;
-	
-	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "perfil_usuario_id", nullable = false)
 	private PerfilUsuario perfilUsuario;
 	
-	private String nomeUsuario;
+	private String codigo;
 	
-	private String email;
+	private String rua;
 	
-	private boolean isAtivo;
+	private String bairro;
 	
-	private LocalDateTime criadoEm;
+	private String numero;
 	
-	private LocalDateTime alteradoEm;
-
+	private String complemento;
 }
